@@ -30,7 +30,7 @@ jobs:
     - uses: nttld/setup-ndk@v1
       id: setup-ndk
       with:
-        ndk-version: r25c
+        ndk-version: r27
     - name: Build
       run: |
         cmake -B build -GNinja -DCMAKE_SYSTEM_NAME=Android -DCMAKE_SYSTEM_VERSION=26 -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=android-26 -DCMAKE_ANDROID_ARCH_ABI=arm64-v8a -DCMAKE_ANDROID_NDK=${{ steps.setup-ndk.outputs.ndk-path }} -DANDROID_NDK=${{ steps.setup-ndk.outputs.ndk-path }} -DCMAKE_TOOLCHAIN_FILE=${{ steps.setup-ndk.outputs.ndk-path }}/build/cmake/android.toolchain.cmake && ninja -C build
@@ -38,5 +38,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: virgl_test_server
-        path: ./build/virgl_test_server
+        path: ./build/
     
